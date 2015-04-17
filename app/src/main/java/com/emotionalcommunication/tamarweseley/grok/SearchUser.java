@@ -8,28 +8,38 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import static com.emotionalcommunication.tamarweseley.grok.R.*;
 
 public class SearchUser extends ActionBarActivity {
+
+    EditText name;
+    EditText emailAddress;
+    TextView userTextView;
+    MyUserDBHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_user);
 
-        Button sendButton = (Button)findViewById(R.id.sendButton);
-        Button logoutButton = (Button)findViewById(R.id.logoutButton);
-        Button searchButton = (Button)findViewById(R.id.searchButton);
+        final Button sendButton = (Button)findViewById(R.id.sendButton);
+        final Button logoutButton = (Button)findViewById(R.id.logoutButton);
+        final Button searchButton = (Button)findViewById(R.id.searchButton);
         final EditText name = (EditText)findViewById(R.id.name);
         final EditText emailAddress = (EditText)findViewById(id.email);
+        final EditText username = (EditText)findViewById(id.username);
+        dbHandler = new MyUserDBHandler(this,null,null,1);
+        //printDatabase();
         searchButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
                         String username = name.getText().toString();
                         String email = emailAddress.getText().toString();
                         if (!email.isEmpty()||!username.isEmpty()){
-                            setContentView(R.layout.activity_inbox);
-                            startActivity(new Intent(SearchUser.this, Inbox.class));
+                            setContentView(layout.activity_search_user);
+                            startActivity(new Intent(SearchUser.this, SearchUser.class));
                         }
                     }
                 }
@@ -53,6 +63,21 @@ public class SearchUser extends ActionBarActivity {
                 }
         );
     }
+
+    public void printDatabase(){
+        String dbString = dbHandler.databaseToString();
+        userTextView.setText(dbString);
+        name.setText("");
+        emailAddress.setText("");
+    }
+
+//    public void searchButtonClicked(){
+//        if (emailAddress.getText().length()!=0){
+//            //Users user = new Users(0,name.getText().toString(), emailAddress.getText().toString());
+//        }
+//        //dbHandler.addUser(user);
+//        printDatabase();
+//    }
 
 
     @Override
@@ -102,27 +127,6 @@ public class SearchUser extends ActionBarActivity {
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
 
 

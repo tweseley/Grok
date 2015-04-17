@@ -8,4 +8,9 @@
     <string name="title_activity_send_message">SendMessage</string>
     <string name="title_activity_inbox">Inbox</string>
     <string name="title_activity_search_user">SearchUser</string>
+    <string name="SignUpButton">\@String/SignUpButtonText</string>
+    <string name="SignUpButton1">Sign Up</string>
+    <string name="title_activity_sign_up_here">SignUpHere</string>
+    <string name="SignUpText">Sign Up for Grok!</string>
+    <string name="emailAddress">Email Address</string>
 </resources>

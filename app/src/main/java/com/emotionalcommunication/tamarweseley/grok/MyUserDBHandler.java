@@ -15,8 +15,8 @@ public class MyUserDBHandler extends SQLiteOpenHelper{
     public static final String TABLE_USERS = "users";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_USERNAME = "_username";
-    public static final String COLUMN_PASSWORD = "_password";
     public static final String COLUMN_EMAIL = "_email";
+    public static final String COLUMN_NAME = "_name";
 
     public MyUserDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context,DATABASE_NAME,factory,DATABASE_VERSION);
@@ -27,8 +27,8 @@ public class MyUserDBHandler extends SQLiteOpenHelper{
         String query = "CREATE TABLE" + TABLE_USERS + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
                 COLUMN_USERNAME + " TEXT " +
-                COLUMN_PASSWORD + " TEXT " +
                 COLUMN_EMAIL + " TEXT " +
+                COLUMN_NAME + " TEXT " +
                 ");";
 
         db.execSQL(query);
@@ -45,8 +45,8 @@ public class MyUserDBHandler extends SQLiteOpenHelper{
     public void addUser(Users user){
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, user.get_username());
-        //values.put(COLUMN_PASSWORD, user.get_password());
         values.put(COLUMN_EMAIL, String.valueOf(user.get_email()));
+        values.put(COLUMN_NAME, String.valueOf(user.get_name()));
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -58,6 +58,21 @@ public class MyUserDBHandler extends SQLiteOpenHelper{
         db.execSQL("DELETE FROM " + TABLE_USERS + "WHERE " + COLUMN_USERNAME + "=\"" + username + "\"");
     }
 
+//    public String getUsernameFromName(String name){
+//
+//    }
+//
+//    public String getNameFromUsername(String username){
+//        return
+//    }
+//
+//    public String getNameFromEmail(String email){
+//        return
+//    }
+//
+//    public String searchByName(String name){
+//        return
+//    }
     //Prints out the database as a string
     public String databaseToString(){
         String dbString = "";

@@ -23,7 +23,7 @@ public class SignUpHere extends ActionBarActivity {
         final EditText emailAddress = (EditText)findViewById(R.id.emailAddress);
         final EditText name = (EditText)findViewById(R.id.name);
         final EditText username = (EditText)findViewById(R.id.username);
-        final Button signUpButton = (Button)findViewById(R.id.signUpButton);
+        final Button signUpButton = (Button)findViewById(R.id.SignUpButton);
         signUpButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
@@ -31,7 +31,7 @@ public class SignUpHere extends ActionBarActivity {
                         startActivity(new Intent(SignUpHere.this, HomePage.class));
                         Users user = new Users(0,username.getText().toString(),emailAddress.getText().toString(),name.getText().toString());
                         dbHandler.addUser(user);
-                        System.out.println(user);
+                        //System.out.println(user);
                     }
                 }
         );

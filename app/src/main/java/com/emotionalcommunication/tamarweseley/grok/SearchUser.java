@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ListView;
 import static com.emotionalcommunication.tamarweseley.grok.R.*;
+import android.util.Log;
 
 public class SearchUser extends ActionBarActivity {
 
@@ -17,6 +19,7 @@ public class SearchUser extends ActionBarActivity {
     EditText emailAddress;
     TextView userTextView;
     MyUserDBHandler dbHandler;
+    private static final String TAG = "DB";
 
 
     @Override
@@ -30,8 +33,9 @@ public class SearchUser extends ActionBarActivity {
         final EditText name = (EditText)findViewById(R.id.name);
         final EditText emailAddress = (EditText)findViewById(id.email);
         final EditText username = (EditText)findViewById(id.username);
+        final ListView listOfUsers = (ListView)findViewById(id.listOfUsers);
         dbHandler = new MyUserDBHandler(this,null,null,1);
-        //printDatabase();
+        //Log.v(TAG,dbHandler.usernamesToString());
         searchButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
@@ -65,7 +69,7 @@ public class SearchUser extends ActionBarActivity {
     }
 
     public void printDatabase(){
-        String dbString = dbHandler.databaseToString();
+        String dbString = dbHandler.usernamesToString();
         userTextView.setText(dbString);
         name.setText("");
         emailAddress.setText("");
@@ -75,7 +79,6 @@ public class SearchUser extends ActionBarActivity {
 //        if (emailAddress.getText().length()!=0){
 //            //Users user = new Users(0,name.getText().toString(), emailAddress.getText().toString());
 //        }
-//        //dbHandler.addUser(user);
 //        printDatabase();
 //    }
 

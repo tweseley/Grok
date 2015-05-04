@@ -11,12 +11,14 @@ public class Users {
     private String _name;
     //private String _password;
 
-    public Users(int id, String username, String email, String name){
-        this._username = _username;
-        this._email = _email;
-        //this._password = _password;
-        this._id = _id;
-        this._name = _name;
+    public Users(){
+
+    }
+    public Users(String username, String email, String name){
+        this._username = username;
+        this._email = email;
+        //this._password = password;
+        this._name = name;
     }
 
     public void set_id(int _id){

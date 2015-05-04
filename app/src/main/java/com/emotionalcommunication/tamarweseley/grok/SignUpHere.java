@@ -29,9 +29,8 @@ public class SignUpHere extends ActionBarActivity {
                     public void onClick(View v){
                         setContentView(R.layout.activity_home_page);
                         startActivity(new Intent(SignUpHere.this, HomePage.class));
-                        Users user = new Users(0,username.getText().toString(),emailAddress.getText().toString(),name.getText().toString());
+                        Users user = new Users(username.getText().toString(),emailAddress.getText().toString(),name.getText().toString());
                         dbHandler.addUser(user);
-                        //System.out.println(user);
                     }
                 }
         );

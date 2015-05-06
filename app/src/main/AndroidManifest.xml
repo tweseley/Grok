@@ -48,6 +48,10 @@
             android:name=".SignUpHere"
             android:label="@string/title_activity_sign_up_here" >
         </activity>
+        <activity
+            android:name=".ProfilePage"
+            android:label="@string/title_activity_profile_page" >
+        </activity>
     </application>
 
 </manifest>

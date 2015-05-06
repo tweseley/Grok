@@ -24,6 +24,8 @@ public class Inbox extends ActionBarActivity {
         Button sendButton1 = (Button)findViewById(id.sendButton1);
         Button lookUpButton1 = (Button)findViewById(id.lookUpButton1);
         Button logoutButton1 = (Button)findViewById(id.logoutButton1);
+        Button profileButton = (Button)findViewById(id.profileButton);
+
         sendButton1.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
@@ -48,6 +50,15 @@ public class Inbox extends ActionBarActivity {
                     public void onClick(View v) {
                         setContentView(layout.activity_home_page);
                         startActivity(new Intent(Inbox.this, HomePage.class));
+                    }
+                }
+        );
+
+        profileButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        setContentView(layout.activity_profile_page);
+                        startActivity(new Intent(Inbox.this, ProfilePage.class)); //?????/
                     }
                 }
         );

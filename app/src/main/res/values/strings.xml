@@ -13,4 +13,5 @@
     <string name="title_activity_sign_up_here">SignUpHere</string>
     <string name="SignUpText">Sign Up for Grok!</string>
     <string name="emailAddress">Email Address</string>
+    <string name="title_activity_profile_page">ProfilePage</string>
 </resources>

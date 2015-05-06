@@ -12,18 +12,27 @@ import android.widget.EditText;
 
 import static com.emotionalcommunication.tamarweseley.grok.R.*;
 import static com.emotionalcommunication.tamarweseley.grok.R.layout.*;
+import android.widget.TextView;
 
 
 public class Inbox extends ActionBarActivity {
+
+    MyUserDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_inbox);
+        dbHandler = new MyUserDBHandler(this,null,null,1);
 
         Button sendButton1 = (Button)findViewById(id.sendButton1);
         Button lookUpButton1 = (Button)findViewById(id.lookUpButton1);
         Button logoutButton1 = (Button)findViewById(id.logoutButton1);
+        String username = getIntent().getStringExtra("Username");
+        String name = dbHandler.getNameFromUsername(username);
+        Log.v("username",username);
+        TextView userText = (TextView)findViewById(id.userText);
+        userText.setText(" "+name);
         sendButton1.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){

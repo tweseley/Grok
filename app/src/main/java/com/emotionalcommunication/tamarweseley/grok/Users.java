@@ -9,15 +9,15 @@ public class Users {
     private String _username;
     private String _email;
     private String _name;
-    //private String _password;
+    private String _password;
 
     public Users(){
 
     }
-    public Users(String username, String email, String name){
+    public Users(String username, String email, String name, String password){
         this._username = username;
         this._email = email;
-        //this._password = password;
+        this._password = password;
         this._name = name;
     }
 
@@ -35,9 +35,9 @@ public class Users {
         this._email = _email;
     }
 
-//    public void set_password(String _password){
-//        this._password = _password;
-//    }
+    public void set_password(String _password){
+        this._password = _password;
+    }
 
     public int get_id(){
         return _id;
@@ -55,7 +55,7 @@ public class Users {
         return _email;
     }
 
-//    public String get_password(){
-//        return _password;
-//    }
+    public String get_password(){
+        return _password;
+    }
 }

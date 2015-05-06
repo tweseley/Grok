@@ -28,7 +28,7 @@ public class MyMessageDBHandler extends SQLiteOpenHelper{
                 COLUMN_EMOTION + " TEXT, " +
                 COLUMN_SENDER + " TEXT, " +
                 COLUMN_RECEIVER + " TEXT, " +
-                COLUMN_DATETIME + System.currentTimeMillis() +
+                COLUMN_DATETIME + " TEXT" +
                 ");";
 
         db.execSQL(query);
@@ -42,18 +42,19 @@ public class MyMessageDBHandler extends SQLiteOpenHelper{
     }
 
     //Add a new row to the database
-    public void addUser(Messages message){
+    public void addMessage(Messages message){
         ContentValues values = new ContentValues();
         values.put(COLUMN_EMOTION, message.get_messageEmotion());
         values.put(COLUMN_SENDER, String.valueOf(message.get_sendingUser()));
         values.put(COLUMN_RECEIVER, String.valueOf(message.get_receivingUser()));
+        values.put(COLUMN_DATETIME, String.valueOf(System.currentTimeMillis()));
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_MESSAGES, null, values);
         db.close();
     }
 
     //Delete a user from the database
-    public void deleteUser(String message){
+    public void deleteMessage(String message){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_MESSAGES + " WHERE " + COLUMN_EMOTION + "=\"" + message + "\"");
     }

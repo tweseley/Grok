@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class SignUpHere extends ActionBarActivity {
@@ -23,14 +24,22 @@ public class SignUpHere extends ActionBarActivity {
         final EditText emailAddress = (EditText)findViewById(R.id.emailAddress);
         final EditText name = (EditText)findViewById(R.id.name);
         final EditText username = (EditText)findViewById(R.id.username);
+        final EditText password = (EditText)findViewById(R.id.password);
         final Button signUpButton = (Button)findViewById(R.id.SignUpButton);
         signUpButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
-                        setContentView(R.layout.activity_home_page);
-                        startActivity(new Intent(SignUpHere.this, HomePage.class));
-                        Users user = new Users(username.getText().toString(),emailAddress.getText().toString(),name.getText().toString());
-                        dbHandler.addUser(user);
+
+                        Users user = new Users(username.getText().toString(),emailAddress.getText().toString(),name.getText().toString(), password.getText().toString());
+                        boolean added = dbHandler.addUser(user);
+                        if (added){
+                            setContentView(R.layout.activity_home_page);
+                            startActivity(new Intent(SignUpHere.this, HomePage.class));
+                        }else{
+                            Toast.makeText(getApplicationContext(),
+                                    "Username already taken.", Toast.LENGTH_LONG)
+                                    .show();
+                        }
                     }
                 }
         );

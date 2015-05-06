@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 
 public class SendMessage extends ActionBarActivity {
@@ -21,12 +23,21 @@ public class SendMessage extends ActionBarActivity {
         Button lookUpButton2 = (Button)findViewById(R.id.lookUpButton2);
         Button logoutButton2 = (Button)findViewById(R.id.logoutButton2);
         final EditText recipient = (EditText)findViewById(R.id.recipient);
-        final EditText emotion = (EditText)findViewById(R.id.emotion);
+
+        //drop-down menu - import options from strings_emotions.xml resource file
+        final Spinner emotionspinner = (Spinner)findViewById(R.id.emotionspinner);
+
+        ArrayAdapter<CharSequence> emotionadapter = ArrayAdapter.createFromResource(this,
+                R.array.emotions_array, android.R.layout.simple_spinner_item);
+        emotionadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        emotionspinner.setAdapter(emotionadapter);
+
         sendButton2.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
                         String userRecipient = recipient.getText().toString();
-                        String userEmotion = emotion.getText().toString();
+                        String userEmotion = emotionspinner.getSelectedItem().toString();
+
                         if (!userRecipient.isEmpty()&&!userEmotion.isEmpty()){
                             setContentView(R.layout.activity_inbox);
                             startActivity(new Intent(SendMessage.this, Inbox.class));
@@ -126,4 +137,3 @@ public class SendMessage extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-

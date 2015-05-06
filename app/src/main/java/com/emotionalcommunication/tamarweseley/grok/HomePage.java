@@ -2,13 +2,9 @@ package com.emotionalcommunication.tamarweseley.grok;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.content.Intent;
 
 import static com.emotionalcommunication.tamarweseley.grok.R.*;
@@ -16,27 +12,30 @@ import static com.emotionalcommunication.tamarweseley.grok.R.*;
 
 public class HomePage extends ActionBarActivity {
 
+    MyUserDBHandler dbHandler;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_home_page);
-
+        dbHandler = new MyUserDBHandler(this,null,null,1);
 
         Button myButton = (Button)findViewById(id.button);
         Button signUpButton = (Button)findViewById(id.signUpButton);
-        final EditText email = (EditText)findViewById(id.email);
+        final EditText username = (EditText)findViewById(id.username);
         final EditText password = (EditText)findViewById(id.password);
 
         myButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
-                        String userEmail = email.getText().toString();
+                        String Username = username.getText().toString();
                         String userPassword = password.getText().toString();
-                        if (!userEmail.isEmpty()&&!userPassword.isEmpty()){
+                        if (!Username.isEmpty()&&!userPassword.isEmpty()&&dbHandler.usernameInDatabase(Username)&&dbHandler.isCorrectPassword(Username, userPassword)){
                             setContentView(layout.activity_inbox);
-                            startActivity(new Intent(HomePage.this, Inbox.class));
+                            Intent homeIntent = new Intent(HomePage.this, Inbox.class);
+                            homeIntent.putExtra("Username", Username);
+                            startActivity(homeIntent);
                         }
                     }
                 }
@@ -54,11 +53,13 @@ public class HomePage extends ActionBarActivity {
         myButton.setOnLongClickListener(
                 new Button.OnLongClickListener(){
                     public boolean onLongClick(View v){
-                        String userEmail = email.getText().toString();
+                        String Username = username.getText().toString();
                         String userPassword = password.getText().toString();
-                        if (!userEmail.isEmpty()&&!userPassword.isEmpty()){
+                        if (!Username.isEmpty()&&!userPassword.isEmpty()&&dbHandler.usernameInDatabase(Username)&&dbHandler.isCorrectPassword(Username, userPassword)){
                             setContentView(layout.activity_inbox);
-                            startActivity(new Intent(HomePage.this, Inbox.class));
+                            Intent homeIntent = new Intent(HomePage.this, Inbox.class);
+                            homeIntent.putExtra("Username", Username);
+                            startActivity(homeIntent);
                         }
                         return true;
                     }

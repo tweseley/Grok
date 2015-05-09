@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--array of allowed emotions in messages-->
+<resources>
+    <string-array name="emotions_array">
+        <item>good</item>
+        <item>bad</item>
+        <item>confused</item>
+        <item>happy</item>
+        <item>excluded</item>
+    </string-array>
+</resources>
